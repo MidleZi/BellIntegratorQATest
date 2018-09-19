@@ -12,6 +12,7 @@ public class TinkoffTest extends WebDriverSettings {
     @Test
     public void testTinkoff() {
 
+        //Шаг №1
         driver.get("https://www.tinkoff.ru"); //открываем сайт
         waiting();
 

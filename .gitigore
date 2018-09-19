@@ -1,1 +1,4 @@
-debbuger, github_setings, vcs
+.allure/
+.idea/
+target/
+
