@@ -3,7 +3,7 @@ package ru.tinkoff;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
-import ru.yandex.qatools.allure.annotations.Step;
+
 
 
 public class TinkoffTest extends WebDriverSettings {
