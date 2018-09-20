@@ -4,7 +4,9 @@ import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 
-
+//я знаю что мое решение с такими xPath не самое удачное, на данный момент работаю над ними
+//то же касается и Thread.sleep. Переделываю на WebDriverWait, с ним и xPath'ы преобразятся
+//не судите строго :) 
 
 public class TinkoffTest extends WebDriverSettings {
 
