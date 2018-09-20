@@ -25,8 +25,8 @@ public class TinkoffTest extends WebDriverSettings {
         waiting();
 
         //Шаг №4
-       /* String region = driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[2]/div/div/div/span/span/span")).getText();
-        //assertTrue(region.equals("Москве"));
+       String region = driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[2]/div/div/div/span/span/span")).getText();
+        assertTrue(region.equals("Москве"));
 
         //Шаг №5
         driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/section/ul/li[1]/span[2]/a/span/div")).click(); //жмем на кнопку "ЖКУ-Москва"
@@ -84,7 +84,7 @@ public class TinkoffTest extends WebDriverSettings {
         driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[3]/div/div[1]/label/div/input")).sendKeys("ЖКУ-Москва");
         waiting();
         String notfindspb = driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[3]/div/div[2]/div/div/div/div/div[1]/div/div[1]/div")).getText();
-        assertTrue(notfindspb.equals("Ничего не найдено"));*/
+        assertTrue(notfindspb.equals("Ничего не найдено"));
     }
 
 }
