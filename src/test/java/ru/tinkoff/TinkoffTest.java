@@ -12,16 +12,20 @@ public class TinkoffTest extends WebDriverSettings {
     @Test
     public void testTinkoff() {
 
+
         //Шаг №1
         driver.get("https://www.tinkoff.ru"); //открываем сайт
-        waiting();
+        waiting(driver, By.cssSelector("footer"));
+        WebElement footer = driver.findElement(By.cssSelector("footer"));
+
 
         // Шаг №2
-        driver.findElement(By.xpath("html/body/div[1]/div/div[1]/div[7]/div/footer/div[2]/div/div/ul/li[1]/ul/li[6]/span/span/a")).click(); //жмем на кнопку "Платежи"
+        footer.findElement(By.cssSelector("[href=\"/payments/\"]")).click();
+        //driver.findElement(By.xpath("html/body/div[1]/div/div[1]/div[7]/div/footer/div[2]/div/div/ul/li[1]/ul/li[6]/span/span/a")).click(); //жмем на кнопку "Платежи"
         waiting();
 
         // Шаг №3
-        driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div[1]/div[2]/div/div[2]/div/div[2]/div/a/span/div/div[2]/div/div/div")).click(); //жмем на кнопку "ЖКХ"
+       /* driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div[1]/div[2]/div/div[2]/div/div[2]/div/a/span/div/div[2]/div/div/div")).click(); //жмем на кнопку "ЖКХ"
         waiting();
 
         //Шаг №4
@@ -84,7 +88,7 @@ public class TinkoffTest extends WebDriverSettings {
         driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[3]/div/div[1]/label/div/input")).sendKeys("ЖКУ-Москва");
         waiting();
         String notfindspb = driver.findElement(By.xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[3]/div/div[2]/div/div/div/div/div[1]/div/div[1]/div")).getText();
-        assertTrue(notfindspb.equals("Ничего не найдено"));
+        assertTrue(notfindspb.equals("Ничего не найдено"));*/
     }
 
 }
