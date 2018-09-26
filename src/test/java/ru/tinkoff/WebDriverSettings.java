@@ -8,7 +8,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
 
 public class WebDriverSettings {
 
@@ -26,15 +25,16 @@ public class WebDriverSettings {
     }
 
    public void waiting(){
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+       try {
+           Thread.sleep(3000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+   }
 
     public void waiting(WebDriver driver, By by){
         wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
+
 }
