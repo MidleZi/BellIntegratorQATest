@@ -1,4 +1,4 @@
-package ru.tinkoff;
+package ru.tests;
 
 import org.junit.After;
 import org.junit.Before;
