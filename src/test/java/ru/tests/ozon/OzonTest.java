@@ -76,9 +76,9 @@ public class OzonTest  extends WebDriverSettings {
             assertNotNull(driver.findElements(By.xpath("//div[@class=\"eCartSplitItems\"]//div[@data-id=\"" + invitelist.get(i) + "\"]")));
         }
 
-        driver.findElement(By.xpath("//div[@data-test-id=\"header-cart\"]/a")).click();
+        //driver.findElement(By.xpath("//div[@data-test-id=\"header-cart\"]/a")).click();
 
-        waiting(driver, By.xpath("//div[@class=\"bIconButton mRemove mGray jsRemoveAll\"]"));
+        waiting(driver, By.xpath("//div[@class=\"eCartControls_infoDate\"]"));
 
         //Шаг №6
 
