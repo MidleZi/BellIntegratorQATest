@@ -47,7 +47,6 @@ public class TinkoffTest extends WebDriverSettings {
         driver.findElement(xpath("//button")).click(); //жмем на кнопку "Оплатить"
         String field1 = driver.findElement(xpath("//form/div[1]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).getText(); //проверяем сообщение об ошибке 1-ого поля
         assertTrue(field1.equals("Поле обязательное"));
-        //остановился на идентификации элемента по предку
 
         String field2 = driver.findElement(xpath("//form/div[2]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).getText(); //проверяем сообщение об ошибке 2-ого поля
         assertTrue(field2.equals("Поле обязательное"));
@@ -69,7 +68,6 @@ public class TinkoffTest extends WebDriverSettings {
         //Подозреваю, что тут не соответствует заданию, т.к. я ссылаюсь на конкретный элемент, а не на первый элемент страницы, но могу и ошибаться
 
         //Шаг №11
-        System.out.println(findtext);
         assertTrue(findtext.equals("ЖКУ-Москва"));
         find.click();
         waiting(driver, xpath("//span[@data-qa-file='Tab'][contains(text(), 'Оплатить ЖКУ в Москве')]"));
@@ -82,7 +80,7 @@ public class TinkoffTest extends WebDriverSettings {
         waiting(driver, xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']"));
 
         driver.findElement(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")).click(); //жмем на кнопку "ЖКХ"
-        waiting(driver, xpath("html/body/div[1]/div/div/div[2]/div[1]/div[2]/div[1]/div[5]/div/div[2]/div/div/div/div[2]/div/div/div/span/span/span"));
+        waiting(driver, xpath("//span[@data-qa-file=\"Link\"]"));
 
         //Шаг №13
         driver.findElement(xpath("//span[@data-qa-file=\"Link\"]")).click();
