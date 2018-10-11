@@ -3,8 +3,8 @@ package ru.tests.tinkoff;
 import org.junit.*;
 import static org.junit.Assert.*;
 import static org.openqa.selenium.By.xpath;
-
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
 import ru.tests.WebDriverSettings;
 
 
@@ -14,85 +14,72 @@ public class TinkoffTest extends WebDriverSettings {
     @Test
     public void testTinkoff() {
 
+        TinkoffMainPage mainPage = PageFactory.initElements(driver, TinkoffMainPage.class);
+        TinkoffPaymentsPage paymentsPage = PageFactory.initElements(driver, TinkoffPaymentsPage.class);
+        TinkoffZKHPage zkhPage = PageFactory.initElements(driver, TinkoffZKHPage.class);
+
 
         //Шаг №1
-        driver.get("https://www.tinkoff.ru"); //открываем сайт
-        waiting(driver, By.xpath("//a[contains(text(),'Платежи')]"));
-
-
+        mainPage.open(); //открываем сайт
 
         // Шаг №2
-        driver.findElements(By.cssSelector("[href=\"/payments/\"]")).get(1).click(); //жмем на кнопку "Платежи"
-        waiting(driver, xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']"));
+        mainPage.getPaymentsButton();//жмем на кнопку "Платежи"
 
         // Шаг №3
-        driver.findElement(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")).click(); //жмем на кнопку "ЖКХ"
-        waiting(driver, xpath("//div[@data-qa-file='FadeText'][contains(text(), 'ЖКУ-Москва')]"));
-
+        paymentsPage.getZKH(); //жмем на кнопку "ЖКХ"
 
         //Шаг №4
-       String region = driver.findElement(xpath("//span[@aria-label='Москве']/span")).getText();
-        assertTrue(region.equals("Москве"));
+        assertTrue(zkhPage.getRegionName().equals("Москве"));
 
         //Шаг №5
-        driver.findElement(xpath("//div[@data-qa-file='FadeText'][contains(text(), 'ЖКУ-Москва')]")).click(); //жмем на кнопку "ЖКУ-Москва"
-        waiting(driver, xpath("//span[@data-qa-file='Tab'][contains(text(), 'Оплатить ЖКУ в Москве')]"));
-        String zhkumoskvapage = driver.getCurrentUrl();
+        zkhPage.zkuMoscowButton(); //жмем на кнопку "ЖКУ-Москва"
+        String zhkumoskvapage = driver.getCurrentUrl(); //сохраняем адрес страницы
 
         //Шаг №6
-        driver.findElement(xpath("//span[@data-qa-file='Tab'][contains(text(), 'Оплатить ЖКУ в Москве')]")).click(); //жмем на кнопку "Оплатить ЖКУ в Москве"
-        waiting(driver, xpath("//button"));
+        zkhPage.getZkuMoscowPay(); //жмем на кнопку "Оплатить ЖКУ в Москве"
 
         //Шаг №7
-        driver.findElement(xpath("//button")).click(); //жмем на кнопку "Оплатить"
-        String field1 = driver.findElement(xpath("//form/div[1]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).getText(); //проверяем сообщение об ошибке 1-ого поля
-        assertTrue(field1.equals("Поле обязательное"));
+        zkhPage.getPayButtonClick(); //жмем на кнопку "Оплатить"
 
-        String field2 = driver.findElement(xpath("//form/div[2]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).getText(); //проверяем сообщение об ошибке 2-ого поля
-        assertTrue(field2.equals("Поле обязательное"));
-
-        String field3 = driver.findElement(xpath("//div[1]/div/div/div[@data-qa-file=\"UIFormRowError\"]")).getText(); //проверяем сообщение об ошибке 3-его поля
-        assertTrue(field3.equals("Поле обязательное"));
+        assertTrue(zkhPage.getFieldFormName(xpath("//form/div[1]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).equals("Поле обязательное"));//проверяем сообщение об ошибке 1-ого поля
+        assertTrue(zkhPage.getFieldFormName(xpath("//form/div[2]/div/div[2][@data-qa-file=\"UIFormRowError\"]")).equals("Поле обязательное"));//проверяем сообщение об ошибке 2-ого поля
+        assertTrue(zkhPage.getFieldFormName(xpath("//div[1]/div/div/div[@data-qa-file=\"UIFormRowError\"]")).equals("Поле обязательное"));//проверяем сообщение об ошибке 3-его поля
 
         // Шаг №8
-        driver.findElement(xpath("//a[contains(text(),'Платежи')]")).click(); //жмем на кнопку "Платежи"
-        waiting(driver, xpath("//input[@data-qa-file=\"SearchInput\"]"));
+        zkhPage.getPaymentsButton(); //жмем на кнопку "Платежи";
 
         //Шаг №9
-        driver.findElement(xpath("//input[@data-qa-file=\"SearchInput\"]")).sendKeys("ЖКУ-Москва");
-        waiting(driver, xpath("//div[@data-qa-file=\"SuggestEntry\"]/div/div[contains(text(), 'ЖКУ-Москва')]"));
+        paymentsPage.getSearh("ЖКУ-Москва", xpath("//div[@data-qa-file=\"SuggestEntry\"]/div/div[contains(text(), 'ЖКУ-Москва')]"));
 
         //Шаг №10
-        WebElement find = driver.findElement(xpath("//div[@data-qa-file=\"SuggestEntry\"]/div/div[contains(text(), 'ЖКУ-Москва')]"));
-        String findtext = find.getText();
+        paymentsPage.setFind(xpath("//div[@data-qa-file=\"SuggestEntry\"]/div/div[contains(text(), 'ЖКУ-Москва')]"));
         //Подозреваю, что тут не соответствует заданию, т.к. я ссылаюсь на конкретный элемент, а не на первый элемент страницы, но могу и ошибаться
 
         //Шаг №11
-        assertTrue(findtext.equals("ЖКУ-Москва"));
-        find.click();
+        assertTrue(paymentsPage.getFindElementText().equals("ЖКУ-Москва"));
+        paymentsPage.getFind().click();
         waiting(driver, xpath("//span[@data-qa-file='Tab'][contains(text(), 'Оплатить ЖКУ в Москве')]"));
         assertTrue(zhkumoskvapage.equals(driver.getCurrentUrl()));
 
 
 
         // Шаг №12
-        driver.findElement(xpath("//a[contains(text(),'Платежи')]")).click(); //жмем на кнопку "Платежи"
-        waiting(driver, xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']"));
+        zkhPage.getPaymentsButton(); //жмем на кнопку "Платежи";
 
-        driver.findElement(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")).click(); //жмем на кнопку "ЖКХ"
-        waiting(driver, xpath("//span[@data-qa-file=\"Link\"]"));
+        paymentsPage.getZKH(); //жмем на кнопку "ЖКХ"
 
         //Шаг №13
-        driver.findElement(xpath("//span[@data-qa-file=\"Link\"]")).click();
-        driver.findElement(xpath("//span[@data-qa-file=\"UILink\"][contains(text(), 'г. Санкт-Петербург')]")).click();
-        waiting(driver, xpath("//input[@data-qa-file=\"SearchInput\"]"));
+        paymentsPage.setRegion(xpath("//span[@data-qa-file=\"UILink\"][contains(text(), 'г. Санкт-Петербург')]"));
 
         //Шаг 14
-        driver.findElement(xpath("//input[@data-qa-file=\"SearchInput\"]")).sendKeys("ЖКУ-Москва");
-        waiting(driver, xpath("//div[@data-qa-file=\"Text\"][contains(text(), 'Ничего не найдено')]"));
-        String notfindspb = driver.findElement(xpath("//div[@data-qa-file=\"Text\"][contains(text(), 'Ничего не найдено')]")).getText();
-        assertTrue(notfindspb.equals("Ничего не найдено"));
 
+        try{
+            paymentsPage.getSearh("ЖКУ-Москва", xpath("//div[@data-qa-file=\"Text\"][contains(text(), 'Ничего не найдено')]"));
+            assertTrue(driver.findElement(xpath("//div[@data-qa-file=\"Text\"][contains(text(), 'Ничего не найдено')]")).getText().equals("Ничего не найдено"));
+        }
+        catch( TimeoutException | InvalidElementStateException e){
+            assertTrue(false);
+        }
     }
 
 }
