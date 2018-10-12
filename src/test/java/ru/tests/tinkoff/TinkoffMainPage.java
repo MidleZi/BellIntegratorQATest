@@ -24,7 +24,7 @@ public class TinkoffMainPage {
         driver.get("https://www.tinkoff.ru");
     }
 
-    public void getPaymentsButton(){
+    public void paymentsButtonClick(){
         payments.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")));
     }

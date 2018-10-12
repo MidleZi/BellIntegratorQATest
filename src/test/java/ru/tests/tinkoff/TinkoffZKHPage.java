@@ -29,32 +29,32 @@ public class TinkoffZKHPage {
     @FindBy(xpath = "//a[contains(text(),'Платежи')]")
     private WebElement payments;
 
-    public void getPaymentsButton(){
-        payments.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")));
-    }
-
-
     public TinkoffZKHPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 10);
+    }
+
+
+    public void paymentsButtonClick(){
+        payments.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")));
     }
 
     public String getRegionName(){
         return regionName.getText();
     }
 
-    public void zkuMoscowButton() {
+    public void zkuMoscowButtonClick() {
         zkuMoscow.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//span[@data-qa-file='Tab'][contains(text(), 'Оплатить ЖКУ в Москве')]")));
     }
 
-    public void getZkuMoscowPay(){
+    public void zkuMoscowPayClick(){
         zkuMoscowPay.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//button")));
     }
 
-    public void getPayButtonClick(){
+    public void payButtonClick(){
         payButton.click();
     }
 

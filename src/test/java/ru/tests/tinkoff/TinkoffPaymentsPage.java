@@ -29,7 +29,7 @@ public class TinkoffPaymentsPage {
         this.wait = new WebDriverWait(driver, 15);
     }
 
-    public void getZKH(){
+    public void zkhButtonClick(){
         zkh.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@data-qa-file='FadeText'][contains(text(), 'ЖКУ-Москва')]")));
     }
