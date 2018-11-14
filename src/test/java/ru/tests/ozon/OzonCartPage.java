@@ -28,21 +28,21 @@ public class OzonCartPage {
     public void clearCart() {
 
         cartCleanButtons = driver.findElements(By.xpath("//div[@class=\"bIconButton mRemove mGray jsRemoveAll\"]"));
+        System.out.println("cartCleanButtons " + cartCleanButtons.size());
 
         /**не удаляет из корзины (не кликаются кнопки) разобраться с псевдоэлементами*/
         for (int i = 1; i < cartCleanButtons.size(); i++) {
             cartCleanButtons.get(i).click();
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eCartControls_infoDate\"]")));
-            driver.findElement(By.xpath("//div[@class=\"eRemovedCartItems_removeAll jsRemoveAll\"]")).click();
         }
     }
 
     public void signOut(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eMyOzon_Item_Bottom bTextLink\"]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"jsUserMenuWrap\"]")));
         Actions action = new Actions(driver);
-        WebElement elem = driver.findElement(By.xpath("//div[@class=\"eMyOzon_Item_Bottom bTextLink\"]"));
+        WebElement elem = driver.findElement(By.xpath("//div[@class=\"eMyOzon_ItemWrap jsQuickPanelUserMenu\"]"));
         action.moveToElement(elem).perform();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"ePanelLinks_term jsOption  jsScores jsWallet jsBottomPart\"]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"ePanelLinks_term jsOption  jsClearTilesFromStorage jsLogOff jsBottomPart\"]")));
         driver.findElement(By.xpath("//div[@class=\"ePanelLinks_term jsOption  jsClearTilesFromStorage jsLogOff jsBottomPart\"]")).click();
     }
 
@@ -55,3 +55,4 @@ public class OzonCartPage {
         return title.getText().equals("Корзина пуста");
     }
 }
+//div[@class=\"ePanelLinks_term jsOption  jsClearTilesFromStorage jsLogOff jsBottomPart\"]

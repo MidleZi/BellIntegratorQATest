@@ -61,8 +61,8 @@ public class OzonTest  extends WebDriverSettings {
         cartPage.clearCart();
 
         //Шаг №7
-        //driver.findElement(By.xpath("//div[@data-test-id=\"header-cart\"]/a")).click(); //для теста без добавления в корзину (список товаров хранится на сервере, приходится удалять вручную)
-        //waiting(driver, By.xpath("//span[@class=\"jsInnerContentpage_title\"]"));//для теста без добавления в корзину (список товаров хранится на сервере, приходится удалять вручную)
+      //  driver.findElement(By.xpath("//div[@data-test-id=\"header-cart\"]/a")).click(); //для теста без добавления в корзину (список товаров хранится на сервере, приходится удалять вручную)
+      //  waiting(driver, By.xpath("//span[@class=\"jsInnerContentpage_title\"]"));//для теста без добавления в корзину (список товаров хранится на сервере, приходится удалять вручную)
         cartPage.signOut();
 
         //Шаг №8

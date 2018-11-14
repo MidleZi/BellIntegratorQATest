@@ -1,8 +1,10 @@
 package ru.tests.ozon;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,9 +25,14 @@ public class OzonMyPersonalPage {
         this.wait = new WebDriverWait(driver, 15);
     }
 
-    public void search(String search, By wait1){
+    public void search(String search, By wait1) {
         searchField.clear();
         searchField.sendKeys(search);
+        try {
+            Thread.sleep(500); //пока так...
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         /**не кликается кнопка, разобраться с псевдоэлементами*/
         searchButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(wait1));

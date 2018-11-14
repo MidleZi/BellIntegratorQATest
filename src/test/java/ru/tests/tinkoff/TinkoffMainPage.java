@@ -26,6 +26,6 @@ public class TinkoffMainPage {
 
     public void paymentsButtonClick(){
         payments.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[text()='ЖКХ']")));
     }
 }

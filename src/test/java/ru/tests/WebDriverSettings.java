@@ -5,8 +5,12 @@ import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Arrays;
 
 
 public class WebDriverSettings {
@@ -16,7 +20,9 @@ public class WebDriverSettings {
 
     @Before
     public void setup(){
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        //options.addArguments("user-data-dir=C:/Users/MidleZi/AppData/Local/Google/Chrome/User Data");
+        driver = new ChromeDriver(options);
     }
 
     @After

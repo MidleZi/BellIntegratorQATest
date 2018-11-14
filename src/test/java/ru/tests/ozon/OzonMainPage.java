@@ -17,6 +17,9 @@ public class OzonMainPage {
     @FindBy(xpath = "//div[@class=\"ePanelLinks_term jsOption  jsScores jsWallet jsBottomPart\"]")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//div[@class=\"eMyOzon_ItemWrap jsQuickPanelUserMenu\"]")
+    private WebElement itemBottom;
+
 
     public OzonMainPage(WebDriver driver){
         this.driver = driver;
@@ -30,8 +33,7 @@ public class OzonMainPage {
     public void loginButtonClick() {
 
         Actions action = new Actions(driver);
-        WebElement elem = driver.findElement(By.xpath("//div[@class=\"eMyOzon_ItemWrap jsQuickPanelUserMenu\"]"));
-        action.moveToElement(elem).perform();
+        action.moveToElement(itemBottom).perform();
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class=\"ePanelLinks_term jsOption  jsScores jsWallet jsBottomPart\"]")));
         loginButton.click(); //кликаем на кнопку "Личный кабинет"
         wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//input[@id='Login']")));

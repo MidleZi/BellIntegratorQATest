@@ -14,7 +14,7 @@ public class TinkoffZKHPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//span[@aria-label='Москве']/span")
+    @FindBy(xpath = "//span[@aria-label='Москве']")
     private WebElement regionName;
 
     @FindBy(xpath = "//div[@data-qa-file='FadeText'][contains(text(), 'ЖКУ-Москва')]")
@@ -37,7 +37,7 @@ public class TinkoffZKHPage {
 
     public void paymentsButtonClick(){
         payments.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[text()='ЖКХ']")));
     }
 
     public String getRegionName(){

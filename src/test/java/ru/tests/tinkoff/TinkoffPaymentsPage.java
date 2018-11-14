@@ -13,7 +13,7 @@ public class TinkoffPaymentsPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//div[@class='IconWithText__container_3I1bQ']//div[text()='ЖКХ']")
+    @FindBy(xpath = "//div[text()='ЖКХ']")
     private WebElement zkh;
 
     @FindBy(xpath = "//input[@data-qa-file=\"SearchInput\"]")
@@ -31,7 +31,7 @@ public class TinkoffPaymentsPage {
 
     public void zkhButtonClick(){
         zkh.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[@data-qa-file='FadeText'][contains(text(), 'ЖКУ-Москва')]")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//div[contains(text(), 'ЖКУ-Москва')]")));
     }
 
     public void getSearh(String keys, By wait1){
