@@ -14,10 +14,10 @@ public class OzonMyPersonalPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//input[@id=\"SearchText\"]")
+    @FindBy(xpath = "//input[@type=\"text\"]")
     private WebElement searchField;
 
-    @FindBy(xpath = "//div[@class=\"bFlatButton mSearchButton\"]")
+    @FindBy(xpath = "//button[@data-test-id=\"header-search-go\"]")
     private WebElement searchButton;
 
     public OzonMyPersonalPage(WebDriver driver){
@@ -28,14 +28,9 @@ public class OzonMyPersonalPage {
     public void search(String search, By wait1) {
         searchField.clear();
         searchField.sendKeys(search);
-        try {
-            Thread.sleep(500); //пока так...
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        /**не кликается кнопка, разобраться с псевдоэлементами*/
-        searchButton.click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(wait1));
+        searchButton.click();
+
 
     }
 }

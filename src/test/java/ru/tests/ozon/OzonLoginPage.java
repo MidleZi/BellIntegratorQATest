@@ -13,36 +13,57 @@ public class OzonLoginPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//input[@id='Login']")
+    @FindBy(xpath = "//input[@type=\"text\"]")
     private WebElement loginField;
 
-    @FindBy(xpath = "//input[@id='Passw']")
+    @FindBy(xpath = "//input[@type=\"password\"]")
     private WebElement passField;
 
-    @FindBy(xpath = "//input[@id=\"Authentication\"]")
+    @FindBy(xpath = "//button[@type=\"button\"]")
     private WebElement authenticationButton;
 
     @FindBy(xpath = "//input[@id=\"CapabilityAgree\"]")
     private WebElement checkBoxCapabilityAgree;
+
+    @FindBy(xpath = "//a[@class=\"link-base\"]")
+    private WebElement emailEnterButton;
 
     public OzonLoginPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 15);
     }
 
+    public void changeToLoginForEmail(){
+        emailEnterButton.click();
+    }
 
-    public void signIn(String login, String pass){
+    public void signInEmail(String login, String pass){
+
         loginField.sendKeys(login);
         passField.sendKeys(pass);
+        authenticationButton.click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//input[@type=\"text\"]")));
+    }
 
-        try {
-            authenticationButton.click();
-        }
-        catch (NoSuchElementException e){
-            checkBoxCapabilityAgree.click();
-            authenticationButton.click();
-        }
-        wait.until(ExpectedConditions.visibilityOfElementLocated(xpath("//input[@id=\"SearchText\"]")));
+
+    public WebElement getLoginField() {
+        return loginField;
+    }
+
+    public WebElement getPassField() {
+        return passField;
+    }
+
+    public WebElement getAuthenticationButton() {
+        return authenticationButton;
+    }
+
+    public WebElement getCheckBoxCapabilityAgree() {
+        return checkBoxCapabilityAgree;
+    }
+
+    public WebElement getEmailEnterButton() {
+        return emailEnterButton;
     }
 
 

@@ -1,6 +1,7 @@
 package ru.tests.ozon;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +12,7 @@ public class OzonSearchPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//div[@data-test-id=\"header-cart\"]/a")
+    @FindBy(xpath = "//span[text()='Корзина']")
     private WebElement cartButton;
 
     public OzonSearchPage(WebDriver driver){
@@ -27,7 +28,13 @@ public class OzonSearchPage {
     }
 
     public void cartButtonClick(){
-        cartButton.click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eCartControls_infoDate\"]")));
+        try {
+            cartButton.click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eCartControls_infoDate\"]")));
+        }
+        catch (NoSuchElementException ex){
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Корзина']")));
+            cartButton.click();
+        }
     }
 }

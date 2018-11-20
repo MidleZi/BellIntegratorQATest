@@ -34,7 +34,7 @@ public class WebDriverSettings {
    }
 
     public void waiting(WebDriver driver, By by){
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 

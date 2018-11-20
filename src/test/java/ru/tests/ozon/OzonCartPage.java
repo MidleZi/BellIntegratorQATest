@@ -1,8 +1,6 @@
 package ru.tests.ozon;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,26 +12,23 @@ public class OzonCartPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(xpath = "//div[@class=\"eMyOzon_Item mCart jsPanelCart\"]/a")
-    private WebElement cartButton;
+    @FindBy(xpath = "//div[@class=\"bIconButton mRemove mGray jsRemoveAll\"]")
+    private WebElement cartDeleteAllButton;
 
     public OzonCartPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 15);
     }
 
-
-    private List<WebElement> cartCleanButtons;
-
     public void clearCart() {
-
-        cartCleanButtons = driver.findElements(By.xpath("//div[@class=\"bIconButton mRemove mGray jsRemoveAll\"]"));
-        System.out.println("cartCleanButtons " + cartCleanButtons.size());
-
-        /**не удаляет из корзины (не кликаются кнопки) разобраться с псевдоэлементами*/
-        for (int i = 1; i < cartCleanButtons.size(); i++) {
-            cartCleanButtons.get(i).click();
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eCartControls_infoDate\"]")));
+        while(!cartEmpty()){
+            try {
+                cartDeleteAllButton.click();
+            }
+            catch(WebDriverException ex) {
+                System.out.println("Не нашел элемент при удалении! Продолжает щелкать");
+                clearCart();
+            }
         }
     }
 
@@ -46,13 +41,10 @@ public class OzonCartPage {
         driver.findElement(By.xpath("//div[@class=\"ePanelLinks_term jsOption  jsClearTilesFromStorage jsLogOff jsBottomPart\"]")).click();
     }
 
-    public boolean cartEmpty(){
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eMyOzon_Item mCart jsPanelCart\"]/a")));
-        cartButton.click();
+    public boolean cartEmpty() throws NoSuchElementException {
         WebElement title = driver.findElement(By.xpath("//span[@class=\"jsInnerContentpage_title\"]"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class=\"jsInnerContentpage_title\"]")));
         System.out.println(title.getText());
         return title.getText().equals("Корзина пуста");
     }
 }
-//div[@class=\"ePanelLinks_term jsOption  jsClearTilesFromStorage jsLogOff jsBottomPart\"]
