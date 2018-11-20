@@ -20,10 +20,10 @@ public class WebDriverSettings {
         driver = new ChromeDriver();
     }
 
-    /*@After
+    @After
     public void close() {
         driver.quit();
-    }*/
+    }
 
    public void waiting(){
        try {

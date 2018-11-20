@@ -13,8 +13,8 @@ import java.util.List;
 
 public class YouTubeTest extends WebDriverSettings {
 
-    private String email = "midlezi@gmail.com";
-    private String password = "bigizi123";
+    private String email = "***";
+    private String password = "***";
     private Alert alert;
 
     @Test
