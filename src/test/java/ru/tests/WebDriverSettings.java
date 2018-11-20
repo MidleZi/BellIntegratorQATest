@@ -20,14 +20,14 @@ public class WebDriverSettings {
         driver = new ChromeDriver();
     }
 
-   /* @After
+    /*@After
     public void close() {
         driver.quit();
     }*/
 
    public void waiting(){
        try {
-           Thread.sleep(15000);
+           Thread.sleep(2000);
        } catch (InterruptedException e) {
            e.printStackTrace();
        }

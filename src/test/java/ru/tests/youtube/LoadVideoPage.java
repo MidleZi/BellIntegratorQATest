@@ -11,9 +11,6 @@ public class LoadVideoPage {
     private WebDriverWait wait;
 
 
-    @FindBy(xpath = "//button[@aria-label=\"Выберите файлы, которые хотите загрузить\"]")
-    private WebElement loadInput;
-
     @FindBy(xpath = "//div[@id=\"start-upload-button-single\"]")
     private WebElement loadButton;
 
@@ -29,6 +26,10 @@ public class LoadVideoPage {
     @FindBy(xpath="//span[text()=\"Опубликовать\"]")
     private WebElement publichButton;
 
+    //Окно загрузки файла
+    @FindBy(xpath ="//div[@id=\"upload-prompt-box\"]/div/input")
+    WebElement addFile;
+
     public WebElement getDescriptionField() {
         return descriptionField;
     }
@@ -39,14 +40,6 @@ public class LoadVideoPage {
 
     public WebElement getLoadButton() {
         return loadButton;
-    }
-
-    public void loadButtonClick() {
-        loadInput.click();
-    }
-
-    public WebElement getLoadInput() {
-        return loadInput;
     }
 
     public WebElement getTagField() {
