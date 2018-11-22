@@ -42,8 +42,8 @@ public class OzonCartPage {
     }
 
     public boolean cartEmpty() throws NoSuchElementException {
-        WebElement title = driver.findElement(By.xpath("//span[@class=\"jsInnerContentpage_title\"]"));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class=\"jsInnerContentpage_title\"]")));
+        WebElement title = driver.findElement(By.xpath("//span[@class=\"jsInnerContentpage_title\"]"));
         System.out.println(title.getText());
         return title.getText().equals("Корзина пуста");
     }

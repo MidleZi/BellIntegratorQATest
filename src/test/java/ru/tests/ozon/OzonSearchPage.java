@@ -33,7 +33,7 @@ public class OzonSearchPage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"eCartControls_infoDate\"]")));
         }
         catch (NoSuchElementException ex){
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Корзина']")));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[contains(text(),'Корзина')]")));
             cartButton.click();
         }
     }

@@ -26,6 +26,8 @@ public class OzonMainPage {
         this.wait = new WebDriverWait(driver, 15);
     }
 
+
+
     public void open(){
         driver.get("https://www.ozon.ru/");
     }
